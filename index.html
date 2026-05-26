@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minjun Kim — Frontend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="bg-grid"></div>
+
+  <nav class="nav">
+    <a href="#home" class="logo">MJ<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-inner">
+        <p class="hero-badge">
+          <span class="dot"></span> Available for new projects
+        </p>
+        <h1 class="hero-title">
+          안녕하세요, <br />
+          <span class="gradient-text">김민준</span>입니다.
+        </h1>
+        <p class="hero-subtitle">
+          Frontend Developer · UI Engineer
+        </p>
+        <p class="hero-desc">
+          사용자 경험을 디자인으로 풀어내는 프론트엔드 개발자입니다.<br />
+          섬세한 인터랙션과 견고한 코드 사이의 균형을 찾는 일을 좋아합니다.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
+          <a href="#contact" class="btn btn-ghost">연락하기 →</a>
+        </div>
+      </div>
+
+      <div class="hero-orb orb-1"></div>
+      <div class="hero-orb orb-2"></div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2 class="section-title">About</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            5년차 프론트엔드 개발자로, 스타트업과 대기업에서
+            <strong>웹/모바일 서비스의 사용자 인터페이스</strong>를 설계하고
+            구현해왔습니다.
+          </p>
+          <p>
+            복잡한 비즈니스 로직을 직관적인 UI로 풀어내는 일을 즐기며,
+            성능과 접근성을 함께 고려한 제품을 만드는 데 관심이 많습니다.
+            최근에는 디자인 시스템과 모션 디자인에 깊이 빠져 있습니다.
+          </p>
+          <p>
+            서울 어딘가에서 커피와 코드를 동력 삼아 일하고 있습니다.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-num">5+</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">40+</div>
+            <div class="stat-label">Projects Shipped</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">12</div>
+            <div class="stat-label">Open Source Repos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Cups of Coffee</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Frontend</h3>
+          <ul>
+            <li>React · Next.js</li>
+            <li>TypeScript</li>
+            <li>Tailwind CSS · CSS-in-JS</li>
+            <li>Framer Motion · GSAP</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Backend & Infra</h3>
+          <ul>
+            <li>Node.js · Express</li>
+            <li>PostgreSQL · Redis</li>
+            <li>Docker · Vercel</li>
+            <li>GitHub Actions</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Design & Tools</h3>
+          <ul>
+            <li>Figma · Sketch</li>
+            <li>Storybook</li>
+            <li>Notion · Linear</li>
+            <li>Design Systems</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Projects</h2>
+      </div>
+      <div class="projects-list">
+        <article class="project-card">
+          <div class="project-meta">
+            <span class="project-year">2025</span>
+            <span class="project-role">Lead Frontend</span>
+          </div>
+          <h3 class="project-title">Nimbus — 협업 노트 서비스</h3>
+          <p class="project-desc">
+            실시간 동시 편집과 블록 기반 에디터를 갖춘 차세대 노트 도구.
+            CRDT 기반 동기화와 0.1초 미만의 입력 지연을 목표로 설계.
+          </p>
+          <div class="project-tags">
+            <span>Next.js</span><span>Yjs</span><span>TypeScript</span><span>Tailwind</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta">
+            <span class="project-year">2024</span>
+            <span class="project-role">Frontend Engineer</span>
+          </div>
+          <h3 class="project-title">Pulse — 헬스케어 대시보드</h3>
+          <p class="project-desc">
+            웨어러블 디바이스 데이터를 시각화하는 의료진용 대시보드.
+            D3로 그린 인터랙티브 차트 12종과 PWA 오프라인 모드를 구현.
+          </p>
+          <div class="project-tags">
+            <span>React</span><span>D3.js</span><span>PWA</span><span>WebSocket</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta">
+            <span class="project-year">2023</span>
+            <span class="project-role">Full-stack</span>
+          </div>
+          <h3 class="project-title">Cobalt — 디자인 시스템</h3>
+          <p class="project-desc">
+            12개 프로덕트에서 사용되는 사내 디자인 시스템.
+            Figma 토큰을 코드로 자동 변환하는 파이프라인까지 함께 구축.
+          </p>
+          <div class="project-tags">
+            <span>Storybook</span><span>Style Dictionary</span><span>Monorepo</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Contact</h2>
+      </div>
+      <div class="contact-box">
+        <h3>같이 무언가 만들어볼까요?</h3>
+        <p>
+          새로운 협업, 흥미로운 프로젝트, 또는 그냥 커피 한잔 모두 환영입니다.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:hello@minjun.dev" class="contact-link">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">hello@minjun.dev</span>
+          </a>
+          <a href="#" class="contact-link">
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">@minjun-kim</span>
+          </a>
+          <a href="#" class="contact-link">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">/in/minjun-kim</span>
+          </a>
+          <a href="#" class="contact-link">
+            <span class="contact-label">X (Twitter)</span>
+            <span class="contact-value">@mj_codes</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Minjun Kim. Crafted with care.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
