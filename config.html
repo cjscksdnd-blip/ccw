@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>형상관리 대시보드 — CCW Team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="config.css" />
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="bg-grid"></div>
+
+  <nav class="nav">
+    <a href="index.html" class="logo">CCW<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">포트폴리오</a></li>
+      <li><a href="config.html" class="nav-active">형상관리</a></li>
+    </ul>
+    <button class="btn-add-top" id="btnOpenAdd">+ 버전 추가</button>
+  </nav>
+
+  <main class="cm-main">
+
+    <!-- 헤더 -->
+    <div class="cm-header reveal">
+      <div>
+        <h1 class="cm-title">형상관리 <span class="gradient-text">대시보드</span></h1>
+        <p class="cm-subtitle">팀 프로젝트 버전 이력 및 변경사항을 관리합니다.</p>
+      </div>
+      <button class="btn btn-primary" id="btnOpenAddMain">+ 버전 추가</button>
+    </div>
+
+    <!-- 통계 카드 -->
+    <div class="cm-stats reveal">
+      <div class="cm-stat-card">
+        <div class="cm-stat-icon">📦</div>
+        <div class="cm-stat-num" id="statTotal">0</div>
+        <div class="cm-stat-label">전체 버전</div>
+      </div>
+      <div class="cm-stat-card">
+        <div class="cm-stat-icon">🚀</div>
+        <div class="cm-stat-num" id="statDeployed">0</div>
+        <div class="cm-stat-label">배포 완료</div>
+      </div>
+      <div class="cm-stat-card">
+        <div class="cm-stat-icon">🔧</div>
+        <div class="cm-stat-num" id="statDev">0</div>
+        <div class="cm-stat-label">개발 중</div>
+      </div>
+      <div class="cm-stat-card">
+        <div class="cm-stat-icon">👥</div>
+        <div class="cm-stat-num" id="statContrib">0</div>
+        <div class="cm-stat-label">기여 인원</div>
+      </div>
+    </div>
+
+    <!-- 필터 & 검색 -->
+    <div class="cm-filters reveal">
+      <div class="cm-search-wrap">
+        <span class="cm-search-icon">🔍</span>
+        <input type="text" id="searchInput" class="cm-search" placeholder="버전, 설명, 작성자로 검색..." />
+      </div>
+      <div class="cm-filter-group">
+        <button class="cm-filter-btn active" data-filter="all">전체</button>
+        <button class="cm-filter-btn" data-filter="개발중">개발중</button>
+        <button class="cm-filter-btn" data-filter="완료">완료</button>
+        <button class="cm-filter-btn" data-filter="배포됨">배포됨</button>
+        <button class="cm-filter-btn" data-filter="롤백">롤백</button>
+      </div>
+      <div class="cm-filter-group">
+        <select id="categoryFilter" class="cm-select">
+          <option value="all">전체 카테고리</option>
+          <option value="Feature">Feature</option>
+          <option value="Bugfix">Bugfix</option>
+          <option value="Refactor">Refactor</option>
+          <option value="Hotfix">Hotfix</option>
+          <option value="Design">Design</option>
+          <option value="Docs">Docs</option>
+        </select>
+        <button class="btn btn-ghost cm-export-btn" id="btnExport">CSV 내보내기</button>
+      </div>
+    </div>
+
+    <!-- 버전 테이블 -->
+    <div class="cm-table-wrap reveal">
+      <table class="cm-table" id="versionTable">
+        <thead>
+          <tr>
+            <th class="col-version">버전</th>
+            <th class="col-date">날짜</th>
+            <th class="col-author">작성자</th>
+            <th class="col-category">카테고리</th>
+            <th class="col-desc">변경 내용</th>
+            <th class="col-status">상태</th>
+            <th class="col-action"></th>
+          </tr>
+        </thead>
+        <tbody id="versionBody">
+        </tbody>
+      </table>
+      <div class="cm-empty" id="emptyMsg" style="display:none;">
+        <span>📭</span>
+        <p>등록된 버전이 없습니다.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 CCW Team · 형상관리 대시보드</p>
+  </footer>
+
+  <!-- 버전 추가 모달 -->
+  <div class="modal-overlay" id="addModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title">새 버전 등록</h2>
+        <button class="modal-close" id="btnCloseAdd">✕</button>
+      </div>
+      <form id="addForm" class="modal-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>버전 번호 <span class="required">*</span></label>
+            <input type="text" id="fVersion" placeholder="예) v1.2.0" required />
+          </div>
+          <div class="form-group">
+            <label>날짜 <span class="required">*</span></label>
+            <input type="date" id="fDate" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>작성자 <span class="required">*</span></label>
+            <input type="text" id="fAuthor" placeholder="예) 천찬웅" required />
+          </div>
+          <div class="form-group">
+            <label>카테고리</label>
+            <select id="fCategory">
+              <option value="Feature">Feature</option>
+              <option value="Bugfix">Bugfix</option>
+              <option value="Refactor">Refactor</option>
+              <option value="Hotfix">Hotfix</option>
+              <option value="Design">Design</option>
+              <option value="Docs">Docs</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>변경 내용 요약 <span class="required">*</span></label>
+          <input type="text" id="fDesc" placeholder="예) 로그인 페이지 UI 개선 및 버그 수정" required />
+        </div>
+        <div class="form-group">
+          <label>상세 변경사항</label>
+          <textarea id="fDetail" rows="4" placeholder="- 변경사항 1&#10;- 변경사항 2&#10;- 변경사항 3"></textarea>
+        </div>
+        <div class="form-group">
+          <label>상태</label>
+          <div class="status-radio-group">
+            <label class="status-radio"><input type="radio" name="fStatus" value="개발중" checked /><span class="badge badge-dev">개발중</span></label>
+            <label class="status-radio"><input type="radio" name="fStatus" value="완료" /><span class="badge badge-done">완료</span></label>
+            <label class="status-radio"><input type="radio" name="fStatus" value="배포됨" /><span class="badge badge-deploy">배포됨</span></label>
+            <label class="status-radio"><input type="radio" name="fStatus" value="롤백" /><span class="badge badge-rollback">롤백</span></label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" id="btnCancelAdd">취소</button>
+          <button type="submit" class="btn btn-primary">등록하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 상세 보기 모달 -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="detailTitle">버전 상세</h2>
+        <button class="modal-close" id="btnCloseDetail">✕</button>
+      </div>
+      <div class="detail-body" id="detailBody"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost btn-delete" id="btnDelete">삭제</button>
+        <button type="button" class="btn btn-primary" id="btnCloseDetailOk">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+</body>
+</html>
